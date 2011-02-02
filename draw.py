@@ -21,7 +21,7 @@ class Draw:
         self.__line   = '_' # line char
     #__init__
 
-    def board(self, x, y):#{{{
+    def board(self, x, y):
         """
         Draw a board.
         @x : The x coordinate of the leftmost corner
@@ -42,7 +42,7 @@ class Draw:
         """
         cursor = self.screen.cursor()
         saved  = cursor.getPos()
-        width, height     = board.BOARD_DIMENSION
+        width, height     = board.dimension()
         c_width, c_height = CELL_DIMENSION
         cursor.go(x,y) # Star Point
         # Proceed as a line printer
@@ -67,6 +67,6 @@ class Draw:
             #end inner loop
         #end outer loop
     cursor.go(saved.line, saved.column) # Restore cursor Pos
-    #End of Board()#}}}
+    #End of Board()
 
 #End of Draw

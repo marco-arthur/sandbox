@@ -8,6 +8,4 @@ Object Development Design:
     Log (a development class for debug)
     Game the class to be the entry point and user interaction.
 
-Object simple interaction:
-    Draw know to draw things as boards in places as screens :)
 Dependencies:

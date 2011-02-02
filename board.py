@@ -46,4 +46,6 @@ class Board:
         """
         return self.__grade[x][y]
     #get
+    def dimension(self):
+        return (self.__x, self.__y)
 #Board
