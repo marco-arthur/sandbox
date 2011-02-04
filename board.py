@@ -1,7 +1,7 @@
-
 #
 # CONSTANTS
 #
+
 EMPTY = ' '
 
 #
@@ -24,7 +24,7 @@ class Board:
 
     def buildEmpty(self, x, y):
         """
-        Let place empty matrix
+        Place an empty grid.
         """
         self.__grade = []
 

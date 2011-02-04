@@ -22,7 +22,6 @@ class BoardTest(unittest.TestCase):
         b.set(1,1, val)
         self.assertEqual(b.get(1,1), val)
     #testUse
-
 #BoardTest
 
 if __name__ == "__main__":

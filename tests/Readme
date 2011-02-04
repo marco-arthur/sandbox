@@ -3,3 +3,4 @@
 Unit Tests Design
     - Creation and use of Board object.
     - Creation and use of a Draw object.
+    - Creation and use of Log object.

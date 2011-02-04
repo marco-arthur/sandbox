@@ -1,12 +1,18 @@
 #
+# IMPORTS
+#
+
+#
 # CONSTANTS
 #
+
 CELL_DIMENSION = (3,1)
 BLANK = ' '
 
 #
 # CODE
 #
+
 class Draw:
     """
     Draw the class to handle console drawing.
@@ -21,11 +27,10 @@ class Draw:
         self.__line   = '_' # line char
     #__init__
 
-    def board(self, x, y):
+    def board(self, pos):
         """
-        Draw a board.
-        @x : The x coordinate of the leftmost corner
-        @y : The y coordinate of the leftmost corner
+        Draw a board clean
+        @pos : The (x,y) coordinates of the leftmost corner
         ----> x
         |
         |y
@@ -40,17 +45,19 @@ class Draw:
             |    --- ---                |
             *---------------------------
         """
+        x,y = pos
+        self.__boardpos = pos # save the board position in screen
         cursor = self.screen.cursor()
         saved  = cursor.getPos()
-        width, height     = board.dimension()
-        c_width, c_height = CELL_DIMENSION
+        width, height   = board.dimension()
+        cwidth, cheight = CELL_DIMENSION
         cursor.go(x,y) # Star Point
         # Proceed as a line printer
-        for lin in range(0, height*c_height - 1):
-            for col in range(0, width*c_width - 1):
+        for lin in range(0, height*cheight - 1):
+            for col in range(0, width*cwidth - 1):
                 # calculate in cell
-                h_ = lin % (c_height+1)
-                w_ = col % (c_width +1)
+                h_ = lin % (cheight+1)
+                w_ = col % (cwidth +1)
                 if h_ == 0:
                     if w_ == 0:
                         char = BLANK
@@ -66,7 +73,28 @@ class Draw:
             cursor.put(char)
             #end inner loop
         #end outer loop
-    cursor.go(saved.line, saved.column) # Restore cursor Pos
-    #End of Board()
+        cursor.go(saved.line, saved.column) # Restore cursor Pos
+    #board
 
+    def incell(self, val, pos):
+        """
+        Try to draw a value in a cell
+        @val : the value
+        @pos : position in board
+        @return : nothing
+        """
+        if len(val) > 1:
+            return "Error"
+        cursor = self.__screen.cursor()
+        cwidth, cheight = board.dimension()
+        # Calculate the place
+        x_ = (pos.x - 1)*(cwidth + 1) + self.__boardpos[0]
+        y_ = (pos.y - 1)*(cheight + 1) + self.__boardpos[1]
+        # try to center value
+        x_ += cwidth/2
+        y_ += cheight/2
+        # End calculation
+        cursor.go(x_, y_)
+        cursor.put(val)
+    #incell
 #End of Draw
